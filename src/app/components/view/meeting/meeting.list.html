@@ -1,0 +1,35 @@
+<!-- Candidates -->
+<div class="candidates-container">
+  <md-card class="candidate" ng-repeat="candidate in vm.candidates | orderBy:'-votes'">
+    <div style="background-image:url('{{candidate.imageUrl}}')" class="image"></div>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{candidate.name}}</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <p>
+        {{candidate.description}}
+      </p>
+      <p>
+        <md-icon class="md-accent">grade</md-icon> {{candidate.votes}} Votos
+      </p>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-accent md-raised" ng-href="candidate/{{candidate.id}}">Ver</md-button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<!-- Load more -->
+<md-button class="md-primary" ng-if="vm.pageToken" ng-click="vm.loadMoreCandidates()">
+  <md-icon>add</md-icon>
+  Cargar más candidatos...
+</md-button>
+
+<!-- Add Button -->
+<div class="list-fab">
+  <md-button class="md-fab" ng-disabled="vm.user.vote === true" ui-sref="candidate.add">
+    <md-icon>add</md-icon>
+  </md-button>
+</div>
